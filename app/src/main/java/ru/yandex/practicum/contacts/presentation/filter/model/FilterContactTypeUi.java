@@ -1,13 +1,13 @@
 package ru.yandex.practicum.contacts.presentation.filter.model;
-
 import androidx.annotation.NonNull;
+import ru.yandex.practicum.contacts.presentation.base.ListDiffInterface;
 
-public class FilterContactTypeUi {
 
+    public class FilterContactTypeUi implements ListDiffInterface<FilterContactTypeUi>{ // подключили к интерфейсу
     private final FilterContactType contactType;
     private final boolean selected;
 
-    public FilterContactTypeUi(@NonNull FilterContactType contactType, boolean selected) {
+    public FilterContactTypeUi( @NonNull FilterContactType contactType, boolean selected) {
         this.contactType = contactType;
         this.selected = selected;
     }
@@ -37,4 +37,8 @@ public class FilterContactTypeUi {
         result = 31 * result + (selected ? 1 : 0);
         return result;
     }
+        @Override
+        public boolean theSameAs(FilterContactTypeUi object){ // реализовали метод
+            return this.getContactType() == object.getContactType();
+        }
 }
